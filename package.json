@@ -1,0 +1,34 @@
+{
+  "name": "todo-simple",
+  "module": "index.ts",
+  "type": "module",
+  "dependencies": {
+    "@elysiajs/swagger": "^1.1.6",
+    "drizzle-orm": "^0.37.0",
+    "elysia": "^1.1.26",
+    "pg": "^8.13.1",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.14",
+    "@types/pg": "^8.11.10",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.7",
+    "drizzle-kit": "^0.29.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "generate": "bunx drizzle-kit generate",
+    "migrate": "bunx drizzle-kit migrate",
+    "seed": "bun src/database/seed.ts",
+    "watch": "bun --watch src/index.ts",
+    "dev": "bun docker:up && bun watch",
+    "build": "bun build src/index.ts --target bun --outdir ./dist",
+    "start": "NODE_ENV=production bun dist/index.js",
+    "test": "bun test"
+  }
+}
